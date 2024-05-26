@@ -37,11 +37,11 @@
             link: "http://www.example.com"
         },*/
     // This is used in various text messages. You should also set <title> in index.html
-    "appName": "Terria Map",
+    "appName": "高分Cube",
     // See comments in lib/Views/global.scss for further information about customising colors, logos, fonts etc.
     "brandBarElements": [
       "",
-      "<a target=\"_blank\" href=\"https://terria.io\"><img src=\"images/terria_logo.png\" height=\"52\" title=\"Version: {{version}}\" /></a>",
+      "<a target=\"_blank\" href=\"https://terria.io\"><img src=\"images/NODA_logo.png\" height=\"52\" title=\"Version: {{version}}\" /></a>",
       ""
     ],
     // Shown when things go wrong.
@@ -69,11 +69,11 @@
     // "showInAppGuides": false,
     // see `languageOverrides.json` in languages/en
     "languageConfiguration": {
-      "enabled": false,
+      "enabled": true,
       "debug": false,
       "languages": {
         "en": "English",
-        "fr": "Français"
+        "zh_Hans": "Chinese"
       },
       "fallbackLanguage": "en"
     },
