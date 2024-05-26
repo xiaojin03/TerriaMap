@@ -1,48 +1,46 @@
 # Terria Map
 
-[![Build Status](https://github.com/TerriaJS/TerriaMap/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/TerriaJS/TerriaMap/actions/workflows/ci.yml) [![Docs](https://img.shields.io/badge/docs-online-blue.svg)](https://docs.terria.io/)
+核心功能库修改为使用自己[二次开发的 terriajs](https://github.com/xiaojin03/terriajs)
 
-![Terria logo](terria-logo.png "Terria logo")
+环境要求：
 
-This is a complete website built using the TerriaJS library. See the [TerriaJS README](https://github.com/TerriaJS/TerriaJS) for information about TerriaJS, and getting started using this repository.
+- The Bash command shell. 如果是 macOS 或 Linux 系统，应该已经自带了。而 Windows 系统则要安装 Git for Windows 获得。
+- Node.js v16.0
+- npm v8.0
+- yarn v1.19.0
 
-For instructions on how to deploy your map, see [the documentation here](doc/deploying/deploying-to-aws.md).
+## 构建和运行项目
 
-To get in touch:
+### 一、下载依赖项
 
-- Join the [TerriaJS Github Discussion](https://github.com/TerriaJS/terriajs/discussions)
-- Raise issues in the [TerriaJS Github issue tracker](https://github.com/TerriaJS/terriajs/issues/new)
+```
+yarn install
+```
 
----
+因为核心功能库 terriajs 修改为从 github 上下载，而不是在 npm 仓库中下载，下载完依赖项后会有冲突，需要对依赖项中的 terriajs 文件夹进行一些修改。
 
-## Major announcements
+```
+TerriaMap\node_modules\terriajs\node_modules
+```
 
-Following is a list of major announcements and upgrades that may affect users maintaining a fork (copied from [TerriaJS announcements](https://github.com/TerriaJS/terriajs/discussions/categories/announcements)). For a full list of changes to TerriaMap, including the latest versions of TerriaJS included with each release please refer to [CHANGES.md](https://github.com/TerriaJS/TerriaMap/blob/main/CHANGES.md). 
+进入以上路径位置，将`.bin`和`d3-color`文件保留，其他都删除掉。
 
-### We have released TerriaJS v8.3.0 (2023-05-22)
+### 二、构建项目
 
-Terriajs version `8.3.0` includes a few breaking changes:
+```
+yarn gulp
+```
 
-    - Upgrade to Typescript version 4.9.x
-    - Upgrade to Mobx version 6.9.x
+对项目代码进行修改后，需要重新运行此命令进行构建，才能生效。
 
-This might affect your map only if it has local model layer modifications like your own custom data provider (aka catalog items). Otherwise you can proceed like any other normal upgrade. For instructions on upgrading your maps with local modiciations please refer to the [upgrade guide](https://github.com/TerriaJS/terriajs/discussions/6787).
+### 三、启动项目
 
-### PM2 no longer supported (2023-03-21)
+```
+yarn start
+```
 
-We've removed pm2 from our dependencies and no longer ship configuration for running terriajs-server with pm2.
+### 四、开发时的热更新启动
 
-`npm start` now runs in forground because it no longer uses pm2. A new task `gulp dev` has been introduced to make development easier. It runs terriajs-server and starts `gulp watch` - which watches for changes and incrementally builds. See https://github.com/TerriaJS/terriajs/discussions/6731 for more information on why and what to do.
-
-### We just reformatted our codebase with [Prettier](https://prettier.io/) (2022-08-29)
-
-This may cause large merge conflicts when you merge `main` into your fork. See https://github.com/TerriaJS/terriajs/discussions/6517 for instructions on how to merge this formatting change.
-
-### We have released TerriaJS v8 (2021-08-13)
-
-What this means:
-
-- [Our new main branch of TerriaMap](https://github.com/TerriaJS/TerriaMap/tree/main) now uses v8+ of TerriaJS
-- [The terriajs7 branch of TerriaMap](https://github.com/TerriaJS/TerriaMap/tree/terriajs7) will use v7 TerriaJS, but will not receive further updates
-- We have a [migration guide](https://docs.terria.io/guide/contributing/migration-guide/) available for users of TerriaJS v7 to help them upgrade their applications to TerriaJS v8
-- Please chat to us and the community in our [GitHub discussions forum](https://github.com/TerriaJS/terriajs/discussions)
+```
+yarn hot
+```
